@@ -1,11 +1,11 @@
-const Home = ()=>{
+import React from 'react'
 
-    return(
-        <>
-        <p>Hello</p>
-        </>
-        
-    )
+function Home() {
+  return (
+    <div>
+      <h3>Find where movies are available to stream, rent or buy.</h3>
+    </div>
+  )
 }
 
-export default Home;
+export default Home

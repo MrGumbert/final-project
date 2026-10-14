@@ -2,8 +2,38 @@
 nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+}
+
+.search-icon{
+  size: 4rem;
+}
+
+
+/*Popular*/
+.popular-screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+/*MovieCard*/
+.card {
+  height:60rem;
+  width: 60rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  
+}
+
+img {
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
 }
 
 
