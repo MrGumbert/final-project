@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import MovieCard from "./MovieCard";
-import './App.css'
+import MovieCard from "../components//MovieCard";
+import '../App.css'
 
 const Popular = () => {
 
     const [movies, setMovies] = useState([])
     const [availability, setAvailability] = useState([])
 
-    const apiKey = import.meta.env.VITE_TMDB_API_KEY
-
+    //Popular
     const fetchMovies = async () => {
+        const apiKey = import.meta.env.VITE_TMDB_API_KEY
         const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
         const options = {
             method: 'GET',
@@ -46,15 +46,15 @@ const Popular = () => {
         fetchMovies()
     }, [])
 
-    useEffect(() => {
-
-    }, [availability])
-
     return (
         <>
             <div id='popular-screen'>
-                <div id="title"><h3>Popular movies (and where to see them)</h3></div>
-                <div class="">{availability.length > 0 ?
+                <h3>Find where movies available to stream, rent or buy in Finland.</h3>
+                <p><em>Watch providers data provided by JustWatch.</em></p>
+                <div class="">
+                    <p>Popular movies:</p>
+                    
+                    {availability.length > 0 ?
                     movies.map((movie, id) =>
                         <div>
                             <MovieCard key={id} movie={movie} available={availability[id]} />

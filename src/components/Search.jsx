@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import './App.css'
+import '../App.css'
 
-const Search = () => {
+const Search = (props) => {
 
     const [input, setInput] = useState('')
+    const [availability, setAvailability] = useState([])
     const [results, setResults] = useState([])
-    const [availability, setAvailability] = useState()
 
     const navigate = useNavigate();
 
@@ -43,23 +42,30 @@ const Search = () => {
         setAvailability(ava)
     }
 
+
     const handleTextChange = (e) => {
         setInput(e.target.value)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        searchMovies(input)
+    }
+
     useEffect(() => {
-        if (!availability) {
+        if (input === "") {
             return
         } else {
-            navigate("/searchResults", { state: { results, availability } })
+            navigate("/searchResults", { state: { input, results, availability } })
         }
     }, [availability])
-
+    
     return (
         <div class="d-flex align-items-center">
-            <FaSearch size={30} />
-            <input class="form-control me-2" type="input" placeholder="...type movie to search" aria-label="Search" value={input} onChange={handleTextChange} />
-            <button class="btn btn-outline-success" type="submit" onClick={() => searchMovies(input)}>Search</button>
+            <form class="d-flex" onSubmit={handleSubmit}>
+                <input class="form-control me-sm-2" type="search" placeholder="Search for a movie" value={input} onChange={handleTextChange} />
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     )
 }
