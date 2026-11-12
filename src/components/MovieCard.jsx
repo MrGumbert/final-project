@@ -20,19 +20,18 @@ const MovieCard = ({ movie, available }) => {
                         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                         className=" card-img img-fluid rounded-start w-100 h-100 object-fit-cover"
                         alt={movie.title}
-                        onClick={() => { navigate("/details", { state: { movie, available } }) }}
+                        onClick={() => { navigate(`/details/${movie.id}`, { state: { movie, available } }) }}
                     />
                 </div>
 
                 <div className="col-md-8">
                     <div className="card-body">
                         <h5 className="card-title"
-                        onClick={() => { navigate("/details", { state: { movie, available } }) }}
+                        onClick={() => { navigate(`/details/${movie.id}`, { state: { movie, available } }) }}
                         >{movie.title}</h5>
                         <p className="card-text">
                             <small className="text-body-secondary">Release date: {movie.release_date}</small>
                         </p>
-
                     </div>
                 </div>
 
