@@ -6,6 +6,7 @@ const Search = (props) => {
 
     const [input, setInput] = useState('')
     const [results, setResults] = useState([])
+    const [total_pages, setTotal_pages] = useState(0);
 
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ const Search = (props) => {
         const res = await fetch(url, options)
         const data = await res.json()
         setResults(data.results)
+        setTotal_pages(data.total_pages)
     }
 
     const handleTextChange = (e) => {
@@ -27,6 +29,7 @@ const Search = (props) => {
     }
 
     const handleSubmit = (e) => {
+        console.log("Searching for ", input)
         e.preventDefault()
         searchMovies(input)
     }
@@ -35,7 +38,7 @@ const Search = (props) => {
         if (input === "") {
             return
         } else {
-            navigate("searchResults", { state: { input, results} })
+            navigate("searchResults", { state: { input, results, total_pages} })
         }
     }, [results])
     
