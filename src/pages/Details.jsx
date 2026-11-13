@@ -10,10 +10,9 @@ function Details(props) {
 
     const { state } = useLocation()
     const movie = state?.movie ?? ""
-
-
     const { id } = useParams();
 
+    //Fetches movie details using TMDB api
     const fetchDetails = async (id) => {
         const apiKey = import.meta.env.VITE_TMDB_API_KEY
         const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
@@ -29,6 +28,7 @@ function Details(props) {
         setDetails(data)
     }
 
+    //Fetches watch provider info on a movie using TMDB api
     const fetchAvailability = async (id) => {
         const apiKey = import.meta.env.VITE_TMDB_API_KEY
         const url = `https://api.themoviedb.org/3/movie/${id}/watch/providers`
@@ -41,6 +41,7 @@ function Details(props) {
         };
         const res = await fetch(url, options)
         const data = await res.json()
+        //checks availability in Finland
         if (data.results.FI != null) {
             setAvailability(data.results.FI)
         }
@@ -50,40 +51,41 @@ function Details(props) {
     }
 
     useEffect(() => {
+        //Fetches using the id, if user directly types the url details/id
         if (movie == "") {
             fetchDetails(id)
             fetchAvailability(id)
         } else {
+            //Fetches using the id of the movie user clicked
             fetchDetails(movie.id)
             fetchAvailability(movie.id)
         }
     }, [])
 
-
+    //lists all streaming platforms where available
     const stream =
         availability && (
             availability.flatrate && (
                 availability.flatrate.map((provider, i) =>
                     <li>
-                        <span className="provider-name">{provider.provider_name}</span>
                         <img className="company-logo" src={`https://image.tmdb.org/t/p/original${provider.logo_path}`} /></li>))
         )
 
+    //lists all platforms where available to rent
     const rent =
         availability && (
             availability.rent && (
                 availability.rent.map((provider, i) =>
                     <li>
-                        <span className="provider-name">{provider.provider_name}</span>
                         <img className="company-logo" src={`https://image.tmdb.org/t/p/original${provider.logo_path}`} /></li>))
         )
 
+    //lists all platforms where available to buy
     const buy =
         availability && (
             availability.buy && (
                 availability.buy.map((provider, i) =>
                     <li>
-                        <span className="provider-name">{provider.provider_name}</span>
                         <img className="company-logo" src={`https://image.tmdb.org/t/p/original${provider.logo_path}`} /></li>))
         )
 
@@ -174,9 +176,7 @@ function Details(props) {
                     <span class="visually-hidden">Loading...</span>
                 </div>}
         </div>
-
     )
-
 }
 
 export default Details
