@@ -8,7 +8,7 @@ import SearchResults from '../pages/SearchResults'
 function Nav(props) {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/final-project">
       {/*Nav bar on the top of the screen*/}
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid justify-content-center gap-3">
