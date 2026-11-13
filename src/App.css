@@ -70,9 +70,7 @@ nav {
 
 .card-body {
   flex: 1;
-  /* body takes the remaining width (500px) */
   min-width: 0;
-  /* lets long text wrap instead of overflowing */
 }
 
 .card-title {
@@ -87,7 +85,6 @@ nav {
 
 
 /*Details screen*/
-
 #details-screen{
   display: flex;
   flex-direction: column;
@@ -114,9 +111,7 @@ nav {
 
 .details-card-body {
   flex: 1;
-  /* body takes the remaining width (500px) */
   min-width: 0;
-  /* lets long text wrap instead of overflowing */
   margin-left: 50px;
 }
 
